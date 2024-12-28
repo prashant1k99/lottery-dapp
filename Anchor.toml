@@ -7,6 +7,9 @@ skip-lint = false
 [programs.localnet]
 lottery_dapp = "FEDUDry6bZTsd8qGXZFqDYPCboWEzEKgDTy3H6yR57nx"
 
+[programs.devnet]
+vesting_dapp = "FEDUDry6bZTsd8qGXZFqDYPCboWEzEKgDTy3H6yR57nx"
+
 [registry]
 url = "https://api.apr.dev"
 
@@ -16,6 +19,8 @@ wallet = "~/.config/solana/id.json"
 
 [scripts]
 test = "node_modules/.bin/jest --preset ts-jest"
+deploy-local = "anchor deploy && anchor keys sync"
+deploy-devnet = "anchor deploy --provider.cluster devnet && anchor keys sync"
 
 [test]
 startup_wait = 5000
