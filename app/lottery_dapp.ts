@@ -14,6 +14,31 @@ export type LotteryDapp = {
   },
   "instructions": [
     {
+      "name": "initializeLottery",
+      "discriminator": [
+        113,
+        199,
+        243,
+        247,
+        73,
+        217,
+        33,
+        11
+      ],
+      "accounts": [
+        {
+          "name": "payer",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "systemProgram",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": []
+    },
+    {
       "name": "intializeConfig",
       "discriminator": [
         38,

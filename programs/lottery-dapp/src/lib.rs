@@ -1,4 +1,9 @@
 use anchor_lang::prelude::*;
+use anchor_spl::{
+    associated_token::AssociatedToken,
+    metadata::Metadata,
+    token_interface::{Mint, TokenAccount, TokenInterface},
+};
 
 declare_id!("FEDUDry6bZTsd8qGXZFqDYPCboWEzEKgDTy3H6yR57nx");
 
@@ -24,6 +29,10 @@ pub mod lottery_dapp {
         ctx.accounts.token_lottery.randomness_account = Pubkey::default();
         ctx.accounts.token_lottery.winner_selected = false;
 
+        Ok(())
+    }
+
+    pub fn initialize_lottery(ctx: Context<InitializeLottery>) -> Result<()> {
         Ok(())
     }
 }
@@ -58,4 +67,36 @@ pub struct TokenLottery {
     pub ticket_price: u64,
     pub authority: Pubkey,
     pub randomness_account: Pubkey,
+}
+
+#[derive(Accounts)]
+pub struct InitializeLottery<'info> {
+    #[account(mut)]
+    pub payer: Signer<'info>,
+
+    #[account(
+        init,
+        payer = payer,
+        mint::decimals = 0,
+        mint::authority = payer,
+        mint::freeze_authority = payer,
+        seeds = [b"collection_mint".as_ref()],
+        bump
+    )]
+    pub collection_mint: InterfaceAccount<'info, Mint>,
+
+    #[account(
+        init,
+        payer = payer,
+        token::mint = collection_mint,
+        token::authority = payer,
+        seeds = [b"collection_associated_token".as_ref()],
+        bump,
+    )]
+    pub collection_token_account: InterfaceAccount<'info, TokenAccount>,
+
+    pub token_metadata_program: Program<'info, Metadata>,
+    pub associated_token_program: Program<'info, AssociatedToken>,
+    pub token_program: Interface<'info, TokenInterface>,
+    pub system_program: Program<'info, System>,
 }
