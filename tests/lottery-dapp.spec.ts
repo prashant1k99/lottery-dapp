@@ -17,7 +17,7 @@ describe("Lottery DApp testing", () => {
     oneYearFromNow.setFullYear(oneYearFromNow.getFullYear() + 1);
     const endTime = new anchor.BN(Math.floor(oneYearFromNow.getTime() / 1000));
 
-    const initConfig = await program.methods.intializeConfig(
+    const initConfig = await program.methods.initializeConfig(
       startTime,
       endTime,
       new anchor.BN(10_000), // 10_000 lamports for every ticket

@@ -8,41 +8,16 @@
   },
   "instructions": [
     {
-      "name": "initialize_lottery",
+      "name": "initialize_config",
       "discriminator": [
-        113,
-        199,
-        243,
-        247,
-        73,
-        217,
-        33,
-        11
-      ],
-      "accounts": [
-        {
-          "name": "payer",
-          "writable": true,
-          "signer": true
-        },
-        {
-          "name": "system_program",
-          "address": "11111111111111111111111111111111"
-        }
-      ],
-      "args": []
-    },
-    {
-      "name": "intialize_config",
-      "discriminator": [
-        38,
-        75,
-        134,
-        154,
-        249,
-        64,
-        246,
-        46
+        208,
+        127,
+        21,
+        1,
+        194,
+        190,
+        196,
+        70
       ],
       "accounts": [
         {
@@ -83,11 +58,11 @@
       ],
       "args": [
         {
-          "name": "start",
+          "name": "start_time",
           "type": "u64"
         },
         {
-          "name": "end",
+          "name": "end_time",
           "type": "u64"
         },
         {
@@ -127,7 +102,7 @@
             "type": "u64"
           },
           {
-            "name": "winner_selected",
+            "name": "winner_chosen",
             "type": "bool"
           },
           {
@@ -140,10 +115,6 @@
           },
           {
             "name": "lottery_pot_amount",
-            "type": "u64"
-          },
-          {
-            "name": "total_tickets",
             "type": "u64"
           },
           {

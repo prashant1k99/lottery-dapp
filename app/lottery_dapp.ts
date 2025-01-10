@@ -14,41 +14,16 @@ export type LotteryDapp = {
   },
   "instructions": [
     {
-      "name": "initializeLottery",
+      "name": "initializeConfig",
       "discriminator": [
-        113,
-        199,
-        243,
-        247,
-        73,
-        217,
-        33,
-        11
-      ],
-      "accounts": [
-        {
-          "name": "payer",
-          "writable": true,
-          "signer": true
-        },
-        {
-          "name": "systemProgram",
-          "address": "11111111111111111111111111111111"
-        }
-      ],
-      "args": []
-    },
-    {
-      "name": "intializeConfig",
-      "discriminator": [
-        38,
-        75,
-        134,
-        154,
-        249,
-        64,
-        246,
-        46
+        208,
+        127,
+        21,
+        1,
+        194,
+        190,
+        196,
+        70
       ],
       "accounts": [
         {
@@ -89,11 +64,11 @@ export type LotteryDapp = {
       ],
       "args": [
         {
-          "name": "start",
+          "name": "startTime",
           "type": "u64"
         },
         {
-          "name": "end",
+          "name": "endTime",
           "type": "u64"
         },
         {
@@ -133,7 +108,7 @@ export type LotteryDapp = {
             "type": "u64"
           },
           {
-            "name": "winnerSelected",
+            "name": "winnerChosen",
             "type": "bool"
           },
           {
@@ -146,10 +121,6 @@ export type LotteryDapp = {
           },
           {
             "name": "lotteryPotAmount",
-            "type": "u64"
-          },
-          {
-            "name": "totalTickets",
             "type": "u64"
           },
           {
