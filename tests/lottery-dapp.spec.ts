@@ -1,6 +1,7 @@
 import * as anchor from "@coral-xyz/anchor";
 import { Program } from "@coral-xyz/anchor";
 import { LotteryDapp } from "../app";
+import { TOKEN_PROGRAM_ID } from "@solana/spl-token";
 
 describe("Lottery DApp testing", () => {
   const provider = anchor.AnchorProvider.env();
@@ -33,14 +34,39 @@ describe("Lottery DApp testing", () => {
       },
     ).add(initConfig);
 
-    const signature = await provider.sendAndConfirm(
+    const signature = await anchor.web3.sendAndConfirmTransaction(
+      provider.connection,
       tx,
       [wallet.payer],
       {
-        commitment: "confirmed",
-      },
+        // To read a full error
+        skipPreflight: true
+      }
     );
 
     console.log("Your transaction signature: ", signature);
+
+    const initLotteryIx = await program.methods.initializeLottery().accounts({
+      tokenProgram: TOKEN_PROGRAM_ID
+    }).instruction();
+
+    const initLotteryTx = new anchor.web3.Transaction(
+      {
+        feePayer: wallet.publicKey,
+        blockhash: blockHashWithContext.blockhash,
+        lastValidBlockHeight: blockHashWithContext.lastValidBlockHeight,
+      },
+    ).add(initLotteryIx);
+
+    const initLotterySignature = await anchor.web3.sendAndConfirmTransaction(
+      provider.connection,
+      tx,
+      [wallet.payer],
+      {
+        skipPreflight: true
+      }
+    )
+    console.log("Your init Lottery signature: ", initLotterySignature);
+
   });
 });
