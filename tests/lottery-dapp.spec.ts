@@ -47,7 +47,7 @@ describe("Lottery DApp testing", () => {
     console.log("Your transaction signature: ", signature);
 
     const initLotteryIx = await program.methods.initializeLottery().accounts({
-      tokenProgram: TOKEN_PROGRAM_ID
+      tokenProgram: TOKEN_PROGRAM_ID,
     }).instruction();
 
     const initLotteryTx = new anchor.web3.Transaction(
@@ -60,13 +60,13 @@ describe("Lottery DApp testing", () => {
 
     const initLotterySignature = await anchor.web3.sendAndConfirmTransaction(
       provider.connection,
-      tx,
+      initLotteryTx,
       [wallet.payer],
       {
         skipPreflight: true
       }
     )
-    console.log("Your init Lottery signature: ", initLotterySignature);
 
+    console.log("Your lottery transaction signature: ", initLotterySignature);
   });
 });
