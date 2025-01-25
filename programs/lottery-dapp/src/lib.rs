@@ -19,7 +19,7 @@ pub const NAME: &str = "Token Lottery Ticket #";
 #[constant]
 pub const SYMBOL: &str = "TLT";
 #[constant]
-pub const URI: &str = "https://raw.githubusercontent.com/prashant1k99/lottery-dapp/refs/heads/main/asssets/lottery.png";
+pub const URI: &str = "https://raw.githubusercontent.com/prashant1k99/lottery-dapp/refs/heads/main/asssets/metadata.json";
 
 #[program]
 pub mod lottery_dapp {
