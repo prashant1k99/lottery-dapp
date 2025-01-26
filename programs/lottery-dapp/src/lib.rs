@@ -140,6 +140,7 @@ pub mod lottery_dapp {
 
     pub fn buy_ticket(ctx: Context<BuyTicket>) -> Result<()> {
         let clock = Clock::get()?;
+
         if clock.slot < ctx.accounts.token_lottery.start_time || clock.slot > ctx.accounts.token_lottery.end_time {
             return Err(ErrorCode::LotteryNotOpen.into())
         }
