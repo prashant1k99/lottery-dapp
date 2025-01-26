@@ -46,9 +46,13 @@ describe("Lottery DApp testing", () => {
 
     console.log("Your transaction signature: ", signature);
 
+  });
+  it("should test token lottery initialize", async () => {
     const initLotteryIx = await program.methods.initializeLottery().accounts({
       tokenProgram: TOKEN_PROGRAM_ID,
     }).instruction();
+
+    const blockHashWithContext = await provider.connection.getLatestBlockhash();
 
     const initLotteryTx = new anchor.web3.Transaction(
       {
@@ -68,5 +72,5 @@ describe("Lottery DApp testing", () => {
     )
 
     console.log("Your lottery transaction signature: ", initLotterySignature);
-  });
+  })
 });
